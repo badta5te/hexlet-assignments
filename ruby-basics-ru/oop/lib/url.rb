@@ -8,6 +8,8 @@ class Url
   extend Forwardable
   include Comparable
 
+  def_delegators :@url, :scheme, :host, :port, :query
+
   def initialize(url)
     @url = URI(url)
   end
@@ -19,22 +21,12 @@ class Url
     end || {}
   end
 
-  def query_param(key, default_value = '')
-    if @query_params&.dig(key)
-      @query_params&.dig(key)
-    elsif default_value != ''
-      default_value
-    end
+  def query_param(key, default_value = nil)
+    @query_params&.dig(key) || default_value
   end
 
-  def ==(other)
-    port == other.port &&
-      host == other.host &&
-      scheme == other.scheme &&
-      query_params.sort == other.query_params.sort
+  def <=>(other)
+    [scheme, host, port, query_params] <=> [other.scheme, other.host, other.port, other.query_params]
   end
-
-  def_delegators :@url, :scheme, :host, :port
-  def_delegator :@url, :query
 end
 # END
