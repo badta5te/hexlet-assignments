@@ -5,38 +5,38 @@ require_relative '../lib/stack'
 
 class StackTest < Minitest::Test
   # BEGIN
-  def test_if_stack_contains_added_element
-    stack = Stack.new
-    stack.push!(5)
+  def setup
+    @stack = Stack.new
+  end
 
-    assert { stack.to_a.first == 5 }
+  def test_if_stack_contains_added_element
+    @stack.push!(5)
+
+    assert { @stack.to_a.first == 5 }
   end
 
   def test_if_stack_does_not_contain_the_element
-    stack = Stack.new
-    stack.push!(5)
-    stack.pop!
+    @stack.push!(5)
+    @stack.pop!
 
-    assert { stack.empty? }
+    assert { @stack.empty? }
   end
 
   def test_if_stack_is_clean
-    stack = Stack.new
-    stack.push!(5)
-    stack.push!(6)
-    stack.clear!
+    @stack.push!(5)
+    @stack.push!(6)
+    @stack.clear!
 
-    assert { stack.empty? }
+    assert { @stack.empty? }
   end
 
   def test_if_stack_is_empty
-    stack = Stack.new
-    stack.push!(5)
-    stack.push!(6)
-    stack.pop!
-    stack.pop!
+    @stack.push!(5)
+    @stack.push!(6)
+    @stack.pop!
+    @stack.pop!
 
-    assert { stack.empty? }
+    assert { @stack.empty? }
   end
   # END
 end
