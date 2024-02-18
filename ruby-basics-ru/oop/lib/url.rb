@@ -22,7 +22,7 @@ class Url
   end
 
   def query_param(key, default_value = nil)
-    @query_params&.dig(key) || default_value
+    @query_params[key] || default_value
   end
 
   def <=>(other)
