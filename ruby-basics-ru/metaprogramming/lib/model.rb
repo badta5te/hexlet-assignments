@@ -37,7 +37,6 @@ module Model
       end
 
       define_method :"#{name}=" do |value|
-        puts 'called'
         @attributes[name] = set_type(value, options[:type])
       end
     end
