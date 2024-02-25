@@ -30,7 +30,6 @@ class PostTest < Minitest::Test
   def test_model_contains_attributes_with_accessors
     post = Post.new
 
-    puts 'VIZOV'
     post.id = @attributes[:id]
     post.title = @attributes[:title]
     post.body = @attributes[:body]
